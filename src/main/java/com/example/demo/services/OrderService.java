@@ -63,7 +63,7 @@ public class OrderService {
         return "Orden creada con éxito. Total: $" + total + ". Número de cuenta para el pago: " + ACCOUNT_NUMBER;
     }
 
-    // Método para verificar el pago de una orden
+    // Metodo para verificar el pago de una orden
     public String verifyPayment(Long orderId, double amountPaid) {
         // Buscar la orden en la base de datos
         OrderModel order = orderRepository.findById(orderId)
@@ -117,7 +117,7 @@ public class OrderService {
         return message;
     }
 
-    // Método para obtener el número de cuenta
+    // Metodo para obtener el número de cuenta
     public String getAccountNumber() {
         return ACCOUNT_NUMBER;
     }

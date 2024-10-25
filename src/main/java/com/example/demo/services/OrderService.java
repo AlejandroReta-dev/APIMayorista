@@ -38,10 +38,14 @@ public class OrderService {
 
         // Calcular el total de la orden, sin modificar el inventario aún
         for (OrderItem item : items) {
-            ProductoModel product = productoRepository.findById(item.getProduct().getIdProducto())
-                    .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+            // Obtener el SKU del producto en el item
+            String sku = item.getProduct().getSku();
 
-            // Solo validamos que haya suficiente stock
+            // Buscar el producto usando el SKU
+            ProductoModel product = productoRepository.findBySku(sku)
+                    .orElseThrow(() -> new RuntimeException("Producto no encontrado para SKU: " + sku));
+
+            // Validar que haya suficiente stock
             if (product.getCantidad() < item.getQuantity()) {
                 throw new RuntimeException("Stock insuficiente para el producto: " + product.getNombre());
             }
@@ -49,7 +53,8 @@ public class OrderService {
             // Calcular el total de la orden
             total += product.getPrecio() * item.getQuantity();
 
-            // Asignar la orden a cada item
+            // Asignar el producto obtenido al item y la orden al item
+            item.setProduct(product);
             item.setOrder(order);
         }
 

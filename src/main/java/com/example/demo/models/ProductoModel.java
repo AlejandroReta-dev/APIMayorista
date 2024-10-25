@@ -15,6 +15,7 @@ public class ProductoModel {
     private String descripcion;
     private double precio;
     private int cantidad;
+    private String sku;
 
     public int getIdProducto() {
         return id_producto;
@@ -53,5 +54,13 @@ public class ProductoModel {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 }

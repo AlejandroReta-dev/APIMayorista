@@ -102,7 +102,7 @@ public class OrderService {
             }
 
             order.setAmountPaid(totalAmount);  // Asegurarse de que el monto pagado sea el total
-            notifyRetailer(order);
+
         } else {
             // Pago insuficiente, no se modifica el inventario
             order.setStatus("PAGO_INSUFICIENTE");
@@ -126,17 +126,6 @@ public class OrderService {
     // Metodo para obtener el número de cuenta
     public String getAccountNumber() {
         return ACCOUNT_NUMBER;
-    }
-
-    private final EmailService emailService = new EmailService(); // Instancia de EmailService
-
-    public void notifyRetailer(OrderModel order) {
-        String toEmail = "alejandroreta4@gmail.com"; // Correo del minorista
-        String subject = "Productos listos para agregar a inventario";
-        String body = "La orden #" + order.getId() + " ha sido procesada. Los productos ya pueden ser añadidos a su inventario.";
-
-        // Llamar a sendEmail para enviar el correo de notificación
-        emailService.sendEmail(toEmail, subject, body);
     }
 
 

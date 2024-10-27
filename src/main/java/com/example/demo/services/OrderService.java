@@ -7,12 +7,6 @@ import com.example.demo.models.ProductoModel;
 import com.example.demo.repositories.OrderRepository;
 import com.example.demo.repositories.PaymentRepository;
 import com.example.demo.repositories.ProductoRepository;
-
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.util.Properties;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -108,6 +102,7 @@ public class OrderService {
             }
 
             order.setAmountPaid(totalAmount);  // Asegurarse de que el monto pagado sea el total
+            notifyRetailer(order);
         } else {
             // Pago insuficiente, no se modifica el inventario
             order.setStatus("PAGO_INSUFICIENTE");

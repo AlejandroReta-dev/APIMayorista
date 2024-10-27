@@ -7,6 +7,12 @@ import com.example.demo.models.ProductoModel;
 import com.example.demo.repositories.OrderRepository;
 import com.example.demo.repositories.PaymentRepository;
 import com.example.demo.repositories.ProductoRepository;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -126,6 +132,19 @@ public class OrderService {
     public String getAccountNumber() {
         return ACCOUNT_NUMBER;
     }
+
+    private final EmailService emailService = new EmailService(); // Instancia de EmailService
+
+    public void notifyRetailer(OrderModel order) {
+        String toEmail = "alejandroreta4@gmail.com"; // Correo del minorista
+        String subject = "Productos listos para agregar a inventario";
+        String body = "La orden #" + order.getId() + " ha sido procesada. Los productos ya pueden ser añadidos a su inventario.";
+
+        // Llamar a sendEmail para enviar el correo de notificación
+        emailService.sendEmail(toEmail, subject, body);
+    }
+
+
 }
 
 

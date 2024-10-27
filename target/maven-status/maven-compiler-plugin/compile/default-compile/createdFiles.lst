@@ -4,7 +4,9 @@ com\example\demo\models\OrderModel.class
 com\example\demo\models\PaymentModel.class
 com\example\demo\models\OrderItem.class
 com\example\demo\controllers\OrderController.class
+com\example\demo\services\OrderService$1.class
 com\example\demo\repositories\RequestRepository.class
+com\example\demo\DemoApplication$Myconfiguration$1.class
 com\example\demo\repositories\OrderRepository.class
 com\example\demo\controllers\PaymentController.class
 com\example\demo\repositories\PaymentRepository.class
@@ -12,6 +14,7 @@ com\example\demo\repositories\ProductoRepository.class
 com\example\demo\services\OrderService.class
 com\example\demo\controllers\RequestController.class
 com\example\demo\models\OrderRequest.class
+com\example\demo\DemoApplication$Myconfiguration.class
 com\example\demo\services\RequestService.class
 com\example\demo\models\Request.class
 com\example\demo\models\ProductoModel.class

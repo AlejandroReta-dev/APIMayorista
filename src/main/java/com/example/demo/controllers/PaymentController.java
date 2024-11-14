@@ -35,7 +35,7 @@ public class PaymentController {
     // Metodo que envía el webhook al sistema minorista
     private void sendWebhookNotification(Long orderId, double amountPaid) {
         // URL del endpoint del minorista que recibirá el webhook
-        String urlMinorista = "http://172.16.12.242/api/porductos/webhook/payment-confirmed";
+        String urlMinorista = "https://apiminorista-production.up.railway.app/api/productos/webhook/payment-confirmed";
 
         // Construcción del payload del webhook
         Map<String, Object> payload = new HashMap<>();

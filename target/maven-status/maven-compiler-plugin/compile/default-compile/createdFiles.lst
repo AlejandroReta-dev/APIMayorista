@@ -4,7 +4,6 @@ com\example\demo\models\OrderModel.class
 com\example\demo\models\PaymentModel.class
 com\example\demo\models\OrderItem.class
 com\example\demo\controllers\OrderController.class
-com\example\demo\services\OrderService$1.class
 com\example\demo\repositories\RequestRepository.class
 com\example\demo\DemoApplication$Myconfiguration$1.class
 com\example\demo\repositories\OrderRepository.class

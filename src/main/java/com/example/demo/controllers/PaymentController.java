@@ -25,9 +25,10 @@ public class PaymentController {
         // Lógica existente para verificar el pago
         String result = orderService.verifyPayment(orderId, amountPaid);
 
-        // Si el pago se verificó correctamente, enviamos el webhook
-        sendWebhookNotification(orderId, amountPaid);
-
+        // Enviar el webhook solo si el pago fue correcto o en exceso
+        if (result.equals("Pago realizado correctamente.") || result.startsWith("Pago en exceso")) {
+            sendWebhookNotification(orderId, amountPaid);
+        }
         return result;
     }
 

@@ -139,6 +139,7 @@ public class OrderService {
         // Convertir los productos de la orden en una lista adecuada para el webhook
         List<Map<String, Object>> products = order.getItems().stream().map(item -> {
             Map<String, Object> productData = new HashMap<>();
+            productData.put("name", item.getProduct().getNombre());
             productData.put("sku", item.getProduct().getSku());
             productData.put("quantity", item.getQuantity());
             productData.put("price", item.getProduct().getPrecio());

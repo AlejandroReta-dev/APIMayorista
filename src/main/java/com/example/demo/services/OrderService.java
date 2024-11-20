@@ -10,8 +10,11 @@ import com.example.demo.repositories.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Collectors;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderService {
@@ -126,6 +129,31 @@ public class OrderService {
     // Metodo para obtener el número de cuenta
     public String getAccountNumber() {
         return ACCOUNT_NUMBER;
+    }
+
+    public Map<String, Object> getOrderDetails(Long orderId) {
+        // Buscar la orden en la base de datos
+        OrderModel order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Orden no encontrada"));
+
+        // Convertir los productos de la orden en una lista adecuada para el webhook
+        List<Map<String, Object>> products = order.getItems().stream().map(item -> {
+            Map<String, Object> productData = new HashMap<>();
+            productData.put("sku", item.getProduct().getSku());
+            productData.put("quantity", item.getQuantity());
+            productData.put("price", item.getProduct().getPrecio());
+            return productData;
+        }).collect(Collectors.toList());
+
+        // Crear el mapa de detalles de la orden
+        Map<String, Object> orderDetails = new HashMap<>();
+        orderDetails.put("orderId", order.getId());
+        orderDetails.put("status", order.getStatus());
+        orderDetails.put("totalAmount", order.getTotalAmount());
+        orderDetails.put("amountPaid", order.getAmountPaid());
+        orderDetails.put("products", products);
+
+        return orderDetails;
     }
 
 

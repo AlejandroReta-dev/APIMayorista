@@ -34,15 +34,18 @@ public class PaymentController {
 
     // Metodo que envía el webhook al sistema minorista
     private void sendWebhookNotification(Long orderId, double amountPaid) {
-        // URL del endpoint del minorista que recibirá el webhook
         String urlMinorista = "https://apiminorista-production-36d3.up.railway.app/api/productos/webhook/payment-confirmed";
+
+        // Obtener los detalles de la orden, incluyendo los productos
+        Map<String, Object> orderDetails = orderService.getOrderDetails(orderId);
 
         // Construcción del payload del webhook
         Map<String, Object> payload = new HashMap<>();
-        payload.put("orderId", orderId);
+        payload.put("orderId", orderDetails.get("orderId"));
         payload.put("status", "paid");
         payload.put("amountPaid", amountPaid);
         payload.put("timestamp", System.currentTimeMillis());
+        payload.put("products", orderDetails.get("products")); // Agregar los productos
 
         // Configuración del encabezado
         HttpHeaders headers = new HttpHeaders();
@@ -58,7 +61,6 @@ public class PaymentController {
             System.out.println("Notificación de pago enviada al minorista. Respuesta: " + response.getBody());
         } catch (Exception e) {
             System.err.println("Error enviando el webhook: " + e.getMessage());
-            // Puedes agregar lógica de reintento aquí si es necesario
         }
     }
 }

@@ -26,9 +26,9 @@ public class PaymentController {
         String result = orderService.verifyPayment(orderId, amountPaid);
 
         // Si el pago se verificó correctamente, enviamos el webhook
-        if ("Pago verificado con éxito".equals(result)) {
+
             sendWebhookNotification(orderId, amountPaid);
-        }
+
         return result;
     }
 

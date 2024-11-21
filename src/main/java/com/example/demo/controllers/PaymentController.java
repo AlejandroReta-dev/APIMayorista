@@ -43,7 +43,7 @@ public class PaymentController {
                 String body = "<html>" +
                         "<body style='font-family: Arial, sans-serif; line-height: 1.6;'>" +
                         "<div style='text-align: center;'>" +
-                        "<img src='https://seeklogo.com/images/F/ferreteria-rg2000-logo-5426E530EE-seeklogo.com.png' alt='Logotipo' style='width: 50px; margin-bottom: 20px;' />" +
+                        "<img src='https://seeklogo.com/images/F/ferreteria-rg2000-logo-5426E530EE-seeklogo.com.png' alt='Logotipo' style='width: 70px; margin-bottom: 5px;' />" +
                         "</div>" +
                         "<h2 style='color: #4CAF50;'>Confirmación de pago</h2>" +
                         "<p>Estimado cliente,</p>" +

@@ -42,13 +42,17 @@ public class PaymentController {
                 String subject = "Confirmación de pago de la orden #" + orderId;
                 String body = "<html>" +
                         "<body style='font-family: Arial, sans-serif; line-height: 1.6;'>" +
+                        "<div style='text-align: center;'>" +
+                        "<img src='https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.zarla.com%2Fes%2Fgu%25C3%25ADas%2Flogos-para-ferreter%25C3%25ADas&psig=AOvVaw3VhnNaLaN0fzRaa9cmTcYc&ust=1732299938055000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCODjj6qG7okDFQAAAAAdAAAAABAE' alt='Logotipo' style='width: 150px; margin-bottom: 20px;' />" +
+                        "</div>" +
                         "<h2 style='color: #4CAF50;'>Confirmación de pago</h2>" +
                         "<p>Estimado cliente,</p>" +
-                        "<p>Hemos recibido el pago de su orden <strong>#" + orderId + "</strong> por un monto de <strong>$" + amountPaid + "</strong>.</p>" +
+                        "<p>Hemos recibido el pago de su orden con número de referencia <strong>#" + orderId + "</strong> por un monto de <strong>$" + amountPaid + "</strong>.</p>" +
                         "<p>Su pedido está en proceso. Gracias por su compra.</p>" +
                         "<p style='color: #555;'>Saludos cordiales,<br><strong>Equipo Mayorista</strong></p>" +
                         "</body>" +
                         "</html>";
+
 
                 emailService.sendEmail(emailMinorista, subject, body);
             }

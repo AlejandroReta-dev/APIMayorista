@@ -43,7 +43,7 @@ public class PaymentController {
                 String body = "<html>" +
                         "<body style='font-family: Arial, sans-serif; line-height: 1.6;'>" +
                         "<div style='text-align: center;'>" +
-                        "<img src='https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.zarla.com%2Fes%2Fgu%25C3%25ADas%2Flogos-para-ferreter%25C3%25ADas&psig=AOvVaw3VhnNaLaN0fzRaa9cmTcYc&ust=1732299938055000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCODjj6qG7okDFQAAAAAdAAAAABAE' alt='Logotipo' style='width: 150px; margin-bottom: 20px;' />" +
+                        "<img src='https://seeklogo.com/vector-logo/402538/ferreteria-rg2000' alt='Logotipo' style='width: 150px; margin-bottom: 20px;' />" +
                         "</div>" +
                         "<h2 style='color: #4CAF50;'>Confirmación de pago</h2>" +
                         "<p>Estimado cliente,</p>" +

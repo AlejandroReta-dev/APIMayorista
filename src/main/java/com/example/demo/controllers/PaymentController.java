@@ -40,10 +40,15 @@ public class PaymentController {
             // Enviar correo
             if (emailMinorista != null && !emailMinorista.isEmpty()) {
                 String subject = "Confirmación de pago de la orden #" + orderId;
-                String body = "Estimado cliente,\n\n" +
-                        "Hemos recibido el pago de su orden #" + orderId + " por un monto de " + amountPaid + ".\n" +
-                        "Su pedido está en proceso. Gracias por su compra.\n\n" +
-                        "Saludos cordiales,\nEquipo Mayorista";
+                String body = "<html>" +
+                        "<body style='font-family: Arial, sans-serif; line-height: 1.6;'>" +
+                        "<h2 style='color: #4CAF50;'>Confirmación de pago</h2>" +
+                        "<p>Estimado cliente,</p>" +
+                        "<p>Hemos recibido el pago de su orden <strong>#" + orderId + "</strong> por un monto de <strong>$" + amountPaid + "</strong>.</p>" +
+                        "<p>Su pedido está en proceso. Gracias por su compra.</p>" +
+                        "<p style='color: #555;'>Saludos cordiales,<br><strong>Equipo Mayorista</strong></p>" +
+                        "</body>" +
+                        "</html>";
 
                 emailService.sendEmail(emailMinorista, subject, body);
             }

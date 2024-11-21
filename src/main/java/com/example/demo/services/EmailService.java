@@ -5,6 +5,11 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import org.springframework.mail.javamail.MimeMessageHelper;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+
 @Service
 public class EmailService{
 
@@ -12,15 +17,17 @@ public class EmailService{
     private JavaMailSender mailSender;
 
     public void sendEmail(String to, String subject, String body) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(body);
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
 
         try {
-            mailSender.send(message);
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(body, true); // El segundo parámetro indica que el texto es HTML
+
+            mailSender.send(mimeMessage);
             System.out.println("Correo enviado exitosamente a: " + to);
-        } catch (Exception e) {
+        } catch (MessagingException e) {
             System.err.println("Error enviando el correo: " + e.getMessage());
         }
     }

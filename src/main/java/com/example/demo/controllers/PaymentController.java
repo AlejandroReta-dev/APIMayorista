@@ -34,9 +34,8 @@ public class PaymentController {
         if (result.equals("Pago realizado correctamente.") || result.startsWith("Pago en exceso")) {
             sendWebhookNotification(orderId, amountPaid);
 
-            // Obtener el correo del minorista (puede ser parte de los detalles de la orden)
-            Map<String, Object> orderDetails = orderService.getOrderDetails(orderId);
-            String emailMinorista = (String) orderDetails.get("email");
+            // Define aquí directamente el correo del minorista
+            String emailMinorista = "alejandroreta4@gmail.com"; // Coloca tu correo aquí
 
             // Enviar correo
             if (emailMinorista != null && !emailMinorista.isEmpty()) {
